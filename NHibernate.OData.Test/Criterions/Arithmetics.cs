@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using NHibernate.Exceptions;
 using NHibernate.OData.Test.Domain;
 using NHibernate.OData.Test.Support;
 using NUnit.Framework;
@@ -48,17 +49,21 @@ namespace NHibernate.OData.Test.Criterions
         }
 
         [Test]
-        [ExpectedException(typeof(HibernateException))] // SQLite doesn't support ceil
         public void Ceiling()
         {
-            Verify<Parent>("ceiling(Int32 div 2) eq 3", q => q.Where(p => p.Int32 == 5 || p.Int32 == 6));
+            Assert.Throws<HibernateException>(() =>
+            {
+                Verify<Parent>("ceiling(Int32 div 2) eq 3", q => q.Where(p => p.Int32 == 5 || p.Int32 == 6));
+            });
         }
 
         [Test]
-        [ExpectedException(typeof(HibernateException))] // SQLite doesn't support floor
         public void Floor()
         {
-            Verify<Parent>("floor(Int32 div 2) eq 3", q => q.Where(p => p.Int32 == 4 || p.Int32 == 5));
+            Assert.Throws<HibernateException>(() =>
+            {
+                Verify<Parent>("floor(Int32 div 2) eq 3", q => q.Where(p => p.Int32 == 4 || p.Int32 == 5));
+            });
         }
 
         [Test]

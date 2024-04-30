@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using NHibernate.Metadata;
 using NHibernate.Type;
+using NHibernate.Util;
 
 namespace NHibernate.OData
 {
@@ -43,7 +44,7 @@ namespace NHibernate.OData
             if (component == null)
                 return;
 
-            bool isDynamicComponent = component.ReturnedClass == typeof(IDictionary);
+            bool isDynamicComponent = component.ReturnedClass == typeof(DynamicComponent);
 
             for (int i = 0; i < component.PropertyNames.Length; i++)
             {

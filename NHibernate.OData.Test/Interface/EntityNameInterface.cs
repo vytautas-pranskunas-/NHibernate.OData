@@ -5,6 +5,7 @@ using System.Text;
 using NHibernate.OData.Test.Domain;
 using NHibernate.OData.Test.Support;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace NHibernate.OData.Test.Interface
 {
@@ -14,7 +15,7 @@ namespace NHibernate.OData.Test.Interface
         [Test]
         public void Tests()
         {
-            Assert.AreEqual(
+            ClassicAssert.AreEqual(
                 Session.QueryOver<Parent>().Where(p => p.Name == "Parent 1").List(),
                 Session.ODataQuery("Parent", "$filter=Name eq 'Parent 1'").List()
             );

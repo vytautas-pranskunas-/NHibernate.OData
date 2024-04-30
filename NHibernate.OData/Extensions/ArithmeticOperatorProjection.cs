@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using NHibernate.Criterion;
 using NHibernate.Type;
+using NHibernate.SqlCommand;
 
 namespace NHibernate.OData.Extensions
 {

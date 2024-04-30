@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace NHibernate.OData.Test.SupportFixtures
 {
@@ -13,9 +14,9 @@ namespace NHibernate.OData.Test.SupportFixtures
         [Test]
         public void CollectionTypes()
         {
-            Assert.AreEqual(typeof(int), OData.TypeUtil.TryGetCollectionItemType(typeof(List<int>)));
-            Assert.AreEqual(typeof(int), OData.TypeUtil.TryGetCollectionItemType(typeof(ISet<int>)));
-            Assert.AreEqual(null, OData.TypeUtil.TryGetCollectionItemType(typeof(IEnumerable)));
+            ClassicAssert.AreEqual(typeof(int), OData.TypeUtil.TryGetCollectionItemType(typeof(List<int>)));
+            ClassicAssert.AreEqual(typeof(int), OData.TypeUtil.TryGetCollectionItemType(typeof(ISet<int>)));
+            ClassicAssert.AreEqual(null, OData.TypeUtil.TryGetCollectionItemType(typeof(IEnumerable)));
         }
     }
 }

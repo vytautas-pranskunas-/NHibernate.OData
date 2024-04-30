@@ -42,17 +42,15 @@ namespace NHibernate.OData.Test.Criterions
         }
 
         [Test]
-        [ExpectedException]
         public void NullIllegalOperator()
         {
-            Verify<Parent>("null gt Child", q => q.Where(p => p.Child == null));
+            Assert.Throws<NotSupportedException>(() => Verify<Parent>("null gt Child", q => q.Where(p => p.Child == null)));
         }
 
         [Test]
-        [ExpectedException]
         public void NullEqNull()
         {
-            Verify<Parent>("null eq null", q => q);
+            Assert.Throws<QueryNotSupportException>(() => Verify<Parent>("null eq null", q => q));
         }
     }
 }

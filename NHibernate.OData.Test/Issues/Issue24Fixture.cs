@@ -5,6 +5,7 @@ using System.Text;
 using NHibernate.OData.Test.Domain;
 using NHibernate.OData.Test.Support;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace NHibernate.OData.Test.Issues
 {
@@ -16,8 +17,8 @@ namespace NHibernate.OData.Test.Issues
         {
             var actual = Session.ODataQuery<Parent>("$count=true").List();
 
-            Assert.AreEqual(1, actual.Count);
-            Assert.AreEqual(11, actual[0]);
+            ClassicAssert.AreEqual(1, actual.Count);
+            ClassicAssert.AreEqual(11, actual[0]);
         }
 
         [Test]
@@ -25,8 +26,8 @@ namespace NHibernate.OData.Test.Issues
         {
             var actual = Session.ODataQuery<Parent>("$filter=Id eq 1&$count=true").List();
 
-            Assert.AreEqual(1, actual.Count);
-            Assert.AreEqual(1, actual[0]);
+            ClassicAssert.AreEqual(1, actual.Count);
+            ClassicAssert.AreEqual(1, actual[0]);
         }
 
         [Test]
@@ -34,8 +35,8 @@ namespace NHibernate.OData.Test.Issues
         {
             var actual = Session.ODataQuery<Parent>("$count=true&$top=1&$skip=1").List();
 
-            Assert.AreEqual(1, actual.Count);
-            Assert.AreEqual(11, actual[0]);
+            ClassicAssert.AreEqual(1, actual.Count);
+            ClassicAssert.AreEqual(11, actual[0]);
         }
     }
 }

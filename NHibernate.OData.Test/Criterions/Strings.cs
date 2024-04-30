@@ -30,11 +30,13 @@ namespace NHibernate.OData.Test.Criterions
         }
 
         [Test]
-        [ExpectedException(typeof(GenericADOException))] // SQLite does not support locate
         public void IndexOf()
         {
-            Verify<Parent>("indexof(LengthString, 'E') eq 5", q => q.Where(p => p.Int32 >= 5));
-            VerifyThrows<Parent>("indexof(LengthString, Name)");
+            Assert.Throws<GenericADOException>(() =>
+            {
+                Verify<Parent>("indexof(LengthString, 'E') eq 5", q => q.Where(p => p.Int32 >= 5));
+                VerifyThrows<Parent>("indexof(LengthString, Name)");
+            });
         }
 
         [Test]

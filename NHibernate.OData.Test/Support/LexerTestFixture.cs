@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace NHibernate.OData.Test.Support
 {
@@ -25,7 +26,7 @@ namespace NHibernate.OData.Test.Support
 
         protected void Verify(string source, params Token[] tokens)
         {
-            Assert.AreEqual(tokens, new OData.Lexer(source).ToList().ToArray());
+            ClassicAssert.AreEqual(tokens, new OData.Lexer(source).ToList().ToArray());
         }
 
         protected void VerifyThrows(string source)
@@ -47,7 +48,7 @@ namespace NHibernate.OData.Test.Support
             }
             catch (Exception ex)
             {
-                Assert.AreEqual(exceptionType, ex.GetType());
+                ClassicAssert.AreEqual(exceptionType, ex.GetType());
             }
         }
     }

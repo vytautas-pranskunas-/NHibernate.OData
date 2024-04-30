@@ -10,6 +10,7 @@ using NHibernate.Criterion;
 using NHibernate.OData.Test.Domain;
 using NHibernate.Tool.hbm2ddl;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using NhEnvironment = NHibernate.Cfg.Environment;
 
 namespace NHibernate.OData.Test.Support
@@ -32,7 +33,7 @@ namespace NHibernate.OData.Test.Support
             }
         }
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void SetUpFixture()
         {
             _databasePath = Path.GetTempFileName();
@@ -125,7 +126,7 @@ namespace NHibernate.OData.Test.Support
             }
         }
 
-        [TestFixtureTearDown]
+        [OneTimeTearDown]
         public void TearDownFixture()
         {
             _sessionFactory.Dispose();
@@ -197,7 +198,7 @@ namespace NHibernate.OData.Test.Support
         {
             var actual = Session.ODataQuery<T>(GetQueryString(filter)).List<T>();
 
-            Assert.AreEqual(0, actual.Count);
+            ClassicAssert.AreEqual(0, actual.Count);
         }
 
         protected void Verify<T>(string filter, Func<IQueryOver<T, T>, IQueryOver<T, T>> query)
@@ -245,7 +246,7 @@ namespace NHibernate.OData.Test.Support
             }
             catch (Exception ex)
             {
-                Assert.AreEqual(exceptionType, ex.GetType());
+                ClassicAssert.AreEqual(exceptionType, ex.GetType());
             }
         }
 
